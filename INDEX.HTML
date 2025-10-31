@@ -1,0 +1,46 @@
+# --- VARIÁVEL GLOBAL ---
+# Esta variável é definida fora de qualquer função e pertence ao escopo global.
+# Ela pode ser lida por qualquer parte do código.
+nome_global = "Dona Global"
+
+def minha_funcao():
+    # --- VARIÁVEL LOCAL ---
+    # Esta variável é definida dentro da função e pertence ao escopo local da função.
+    # Ela só pode ser acessada dentro desta função.
+    nome_local = "Senhor Local"
+    
+    # 1. Acesso à variável LOCAL
+    print(f"Dentro da função (Acesso Local): O nome é '{nome_local}'")
+    
+    # 2. Acesso à variável GLOBAL (leitura)
+    # A função pode ler a variável global.
+    print(f"Dentro da função (Acesso Global): O nome é '{nome_global}'")
+
+def modificar_global():
+    # Para modificar uma variável global dentro de uma função, 
+    # precisamos usar a palavra-chave 'global'.
+    global nome_global
+    print(f"\nTentando modificar a variável global...")
+    nome_global = "Global Modificada"
+    print(f"Dentro da função (Modificação): O novo nome global é '{nome_global}'")
+
+# --- EXECUÇÃO DO PROGRAMA ---
+
+# Acessando a variável global no escopo principal
+print(f"Escopo Global (Antes da função): O nome global é '{nome_global}'")
+
+# Chamando a função para demonstrar o escopo local e global
+minha_funcao()
+
+# Tentativa de acessar a variável LOCAL FORA da função (irá falhar)
+try:
+    print(f"\nEscopo Global (Tentativa de acesso local): {nome_local}")
+except NameError as e:
+    print(f"\nEscopo Global (Erro de Acesso Local): Erro: {e}")
+    print("A variável 'nome_local' está fora de seu escopo e não pode ser acessada aqui.")
+
+# Chamando a função para modificar a variável global
+modificar_global()
+
+# Verificando se a variável global foi realmente modificada
+print(f"Escopo Global (Após modificação): O nome global é '{nome_global}'")
